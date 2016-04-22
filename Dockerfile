@@ -45,10 +45,10 @@ RUN dpkg -i /tmp/ffmpeg_5:2.0.1-1_amd64.deb
 RUN rm -f /tmp/*.deb
 
 #Install Tomcat prior to bbb installation
-RUN apt-get install -y tomcat6
+RUN apt-get install -y tomcat7
 
 #Replace init script, installed one is broken
-ADD scripts/tomcat6 /etc/init.d/
+ADD scripts/tomcat7 /etc/init.d/
 
 #Install BigBlueButton
 RUN apt-get -y update
