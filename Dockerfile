@@ -1,4 +1,4 @@
-FROM ubuntu:10.04
+FROM ubuntu:14.04
 MAINTAINER Ali Fırat ARI alifiratari@gmail.com
 ENV DEBIAN_FRONTEND noninteractive
 
