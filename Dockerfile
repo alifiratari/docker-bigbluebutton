@@ -1,5 +1,5 @@
 FROM ubuntu:10.04
-MAINTAINER Juan Luis Baptiste juan.baptiste@gmail.com
+MAINTAINER Ali Fırat ARI alifiratari@gmail.com
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -y update
