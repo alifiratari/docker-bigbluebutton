@@ -2,8 +2,8 @@
 # http://bigbluebutton.org
 #
 
-LIBVPX_VERSION=1.2.0
-FFMPEG_VERSION=2.0.1
+LIBVPX_VERSION=1.5.0
+FFMPEG_VERSION=2.3.3
 BUILD_LIBVPX=0
 PKG_DIR="/tmp/build"
 
