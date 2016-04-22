@@ -1,5 +1,5 @@
 bbb:
-  image: 'juanluisbaptiste/bigbluebutton:latest'
+  image: 'alifiratari/bigbluebutton:latest'
   environment:
     - BBB_INSTALL_DEMOS=yes
     - MOBILE_SALT=03b07
@@ -25,7 +25,7 @@ bbbdata:
   tags:
     - bbb
 nginx:
-  image: 'juanluisbaptiste/bigbluebutton-proxy:latest'
+  image: 'alifiratari/bigbluebutton-proxy:latest'
   ports:
     - '80:80'
     - '443:443'
