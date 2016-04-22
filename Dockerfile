@@ -11,7 +11,7 @@ RUN dpkg-reconfigure locales
 RUN wget http://ubuntu.bigbluebutton.org/bigbluebutton.asc -O- | apt-key add -
 
 # Add the BigBlueButton repository URL and ensure the multiverse is enabled
-RUN echo "deb http://ubuntu.bigbluebutton.org/lucid_dev_081/ bigbluebutton-lucid main" | tee /etc/apt/sources.list.d/bigbluebutton.list
+RUN echo "deb http://ubuntu.bigbluebutton.org/trusty-1-0/ bigbluebutton-trusty main" | sudo tee /etc/apt/sources.list.d/bigbluebutton.list
 
 #Add multiverse repo
 RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ lucid multiverse" | tee -a /etc/apt/sources.list
@@ -22,7 +22,8 @@ RUN apt-get -y dist-upgrade
 RUN wget http://bigbluebutton.googlecode.com/files/openoffice.org_1.0.4_all.deb
 RUN dpkg -i openoffice.org_1.0.4_all.deb
 RUN apt-get install -y python-software-properties
-RUN apt-add-repository ppa:libreoffice/libreoffice-4-0
+RUN apt-get install -y software-properties-common
+RUN apt-add-repository ppa:libreoffice/libreoffice-4-4
 RUN apt-get -y update
 RUN apt-get install -y --allow-unauthenticated libreoffice-common libreoffice
 
@@ -38,7 +39,7 @@ RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby1.9.2 500 \
 RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.9.2 500
 
 #Install ffmpeg
-RUN apt-get install -y build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libxfixes-dev zlib1g-dev pkg-config
+RUN apt-get install build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
 ADD deb/ffmpeg_5:2.0.1-1_amd64.deb /tmp/
 RUN dpkg -i /tmp/ffmpeg_5:2.0.1-1_amd64.deb
 RUN rm -f /tmp/*.deb
