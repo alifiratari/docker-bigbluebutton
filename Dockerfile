@@ -29,7 +29,7 @@ RUN apt-get install -y --allow-unauthenticated libreoffice-common libreoffice
 
 #Install required Ruby version
 RUN apt-get install -y libffi-dev
-RUN apt-get install -y libffi6 libreadline5 libyaml-0-2 libgdbm3 libcurl4-openssl-dev libxslt1-dev libxml2-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev
+RUN apt-get install -y git-core libffi6 libreadline5 libyaml-0-2 libgdbm3 libcurl4-openssl-dev libxslt1-dev libxml2-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev
 
 RUN cd
 RUN git clone git://github.com/sstephenson/rbenv.git .rbenv
