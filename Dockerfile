@@ -33,7 +33,7 @@ RUN apt-get install -y curl git-core libffi6 libreadline5 libyaml-0-2 libgdbm3 l
 RUN curl -#LO https://rvm.io/mpapis.asc
 RUN gpg --import mpapis.asc
 RUN curl -sSL https://get.rvm.io | bash -s stable
-RUN source /etc/profile.d/rvm.sh
+RUN echo "source /etc/profile.d/rvm.sh" >> /etc/profile
 RUN rvm install 2.3.0 1.9.3
 RUN rvm use 1.9.3 --default
 RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby1.9.3 500 \
