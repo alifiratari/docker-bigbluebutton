@@ -29,17 +29,20 @@ RUN apt-get install -y --allow-unauthenticated libreoffice-common libreoffice
 
 #Install required Ruby version
 RUN apt-get install -y libffi-dev
-RUN apt-get install -y git-core libffi6 libreadline5 libyaml-0-2 libgdbm3 libcurl4-openssl-dev libxslt1-dev libxml2-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev
-RUN apt-get install -y ruby1.8 ruby1.9.3 ruby2.3
-RUN apt-get install -y ruby1.8-dev ruby1.9.3-dev ruby2.3-dev
+RUN apt-get install -y curl git-core libffi6 libreadline5 libyaml-0-2 libgdbm3 libcurl4-openssl-dev libxslt1-dev libxml2-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev
+RUN curl -#LO https://rvm.io/mpapis.asc
+RUN gpg --import mpapis.asc
+RUN curl -sSL https://get.rvm.io | bash -s stable
+RUN source /etc/profile.d/rvm.sh
+RUN rvm install 2.3.0 1.9.3
+RUN rvm use 1.9.3 --default
 RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby1.9.3 500 \
                          --slave /usr/bin/ri ri /usr/bin/ri1.9.3 \
                          --slave /usr/bin/irb irb /usr/bin/irb1.9.3 \
                          --slave /usr/bin/erb erb /usr/bin/erb1.9.3 \
                          --slave /usr/bin/rdoc rdoc /usr/bin/rdoc1.9.3
 RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.9.3 500
-RUN apt-get install -y ruby-switch
-RUN ruby-switch --set ruby1.9.3
+
 #Install ffmpeg
 RUN apt-get install build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
 ADD deb/ffmpeg_5:2.0.1-1_amd64.deb /tmp/
