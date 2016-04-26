@@ -29,15 +29,25 @@ RUN apt-get install -y --allow-unauthenticated libreoffice-common libreoffice
 
 #Install required Ruby version
 RUN apt-get install -y libffi-dev
-RUN apt-get install -y libffi5 libffi6 libreadline5 libyaml-0-2 libgdbm3
-RUN wget https://bigbluebutton.googlecode.com/files/ruby1.9.2_1.9.2-p290-1_amd64.deb
-RUN dpkg -i ruby1.9.2_1.9.2-p290-1_amd64.deb
-RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby1.9.2 500 \
-                         --slave /usr/bin/ri ri /usr/bin/ri1.9.2 \
-                         --slave /usr/bin/irb irb /usr/bin/irb1.9.2 \
-                         --slave /usr/bin/erb erb /usr/bin/erb1.9.2 \
-                         --slave /usr/bin/rdoc rdoc /usr/bin/rdoc1.9.2
-RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.9.2 500
+RUN apt-get install -y libffi6 libreadline5 libyaml-0-2 libgdbm3 libcurl4-openssl-dev libxslt1-dev libxml2-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev
+
+RUN cd
+RUN git clone git://github.com/sstephenson/rbenv.git .rbenv
+RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+RUN echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+RUN git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+RUN echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bash_profile
+RUN source ~/.bash_profile
+
+RUN -y rbenv install -v 2.3
+RUN -y rbenv global 2.3
+
+RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.3 500 \
+                         --slave /usr/bin/ri ri /usr/bin/ri2.3 \
+                         --slave /usr/bin/irb irb /usr/bin/irb2.3 \
+                         --slave /usr/bin/erb erb /usr/bin/erb2.3 \
+                         --slave /usr/bin/rdoc rdoc /usr/bin/rdoc2.3
+RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.3 500
 
 #Install ffmpeg
 RUN apt-get install build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
