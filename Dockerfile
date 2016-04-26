@@ -30,25 +30,16 @@ RUN apt-get install -y --allow-unauthenticated libreoffice-common libreoffice
 #Install required Ruby version
 RUN apt-get install -y libffi-dev
 RUN apt-get install -y git-core libffi6 libreadline5 libyaml-0-2 libgdbm3 libcurl4-openssl-dev libxslt1-dev libxml2-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev
-
-RUN cd
-RUN git clone git://github.com/sstephenson/rbenv.git .rbenv
-RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-RUN echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-RUN git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-RUN echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bash_profile
-RUN source ~/.bash_profile
-
-RUN -y rbenv install -v 2.3
-RUN -y rbenv global 2.3
-
-RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.3 500 \
-                         --slave /usr/bin/ri ri /usr/bin/ri2.3 \
-                         --slave /usr/bin/irb irb /usr/bin/irb2.3 \
-                         --slave /usr/bin/erb erb /usr/bin/erb2.3 \
-                         --slave /usr/bin/rdoc rdoc /usr/bin/rdoc2.3
-RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.3 500
-
+RUN apt-get install -y ruby1.8 ruby1.9.3 ruby2.3
+RUN apt-get install -y ruby1.8-dev ruby1.9.3-dev ruby2.3-dev
+RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby1.9.3 500 \
+                         --slave /usr/bin/ri ri /usr/bin/ri1.9.3 \
+                         --slave /usr/bin/irb irb /usr/bin/irb1.9.3 \
+                         --slave /usr/bin/erb erb /usr/bin/erb1.9.3 \
+                         --slave /usr/bin/rdoc rdoc /usr/bin/rdoc1.9.3
+RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.9.3 500
+RUN apt-get install -y ruby-switch
+RUN ruby-switch --set ruby1.9.3
 #Install ffmpeg
 RUN apt-get install build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
 ADD deb/ffmpeg_5:2.0.1-1_amd64.deb /tmp/
@@ -63,10 +54,10 @@ ADD scripts/tomcat7 /etc/init.d/
 
 #Install BigBlueButton
 RUN apt-get -y update
-RUN export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && gem install bundler -v 1.10.6
-RUN gem install archive-tar-minitar 
-RUN gem install hoe -v 2.8.0
-RUN gem install rcov -v 0.9.11
+RUN export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && gem1.9.3 install bundler -v 1.10.6
+RUN gem1.9.3 install archive-tar-minitar 
+RUN gem1.9.3 install hoe -v 2.8.0
+RUN gem1.9.3 install rcov -v 0.9.11
 RUN su - -c "apt-get install -y bigbluebutton" 
 
 EXPOSE 80 9123 1935
