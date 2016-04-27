@@ -51,7 +51,7 @@ ADD scripts/tomcat7 /etc/init.d/
 
 #Install BigBlueButton
 RUN apt-get -y update
-RUN export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && gem1.9.3 install bundler -v 1.10.6
+RUN export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && gem install bundler -v 1.10.6
 RUN gem install archive-tar-minitar 
 RUN gem install hoe -v 2.8.0
 RUN gem install rcov -v 0.9.11
