@@ -35,7 +35,8 @@ RUN gpg --import mpapis.asc
 RUN curl -sSL https://get.rvm.io | bash -s stable
 RUN echo "source /etc/profile.d/rvm.sh" >> /etc/profile
 RUN echo "rvm install 2.3.0 --binary --autolibs=enabled"
-RUN echo "rvm --default use 2.3.0" >> /etc/profile
+RUN echo "rvm install 1.9.3 --binary --autolibs=enabled"
+RUN echo "rvm --default use 1.9.3" >> /etc/profile
 
 #Install ffmpeg
 RUN apt-get install -y build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
