@@ -29,10 +29,10 @@ RUN apt-get install -y --allow-unauthenticated libreoffice-common libreoffice
 
 #Install required Ruby version
 RUN apt-get install -y libffi-dev
+RUN yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl sqlite-devel
 RUN apt-get install -y curl git-core libffi6 libreadline5 libyaml-0-2 libgdbm3 libcurl4-openssl-dev libxslt1-dev libxml2-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev
-RUN curl -#LO https://rvm.io/mpapis.asc
-RUN gpg --import mpapis.asc
-RUN curl -sSL https://get.rvm.io | bash -s stable
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+RUN curl -sSL https://get.rvm.io | bash -s stable --ruby=jruby --gems=rails,puma
 RUN echo "source /etc/profile.d/rvm.sh" >> /etc/profile
 RUN echo "rvm install 2.3.0 --binary --autolibs=enabled"
 RUN echo "rvm install 1.9.3 --binary --autolibs=enabled"
