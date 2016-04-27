@@ -34,7 +34,7 @@ RUN curl -#LO https://rvm.io/mpapis.asc
 RUN gpg --import mpapis.asc
 RUN curl -sSL https://get.rvm.io | bash -s stable
 RUN echo "source /etc/profile.d/rvm.sh" >> /etc/profile
-RUN echo rvm install 2.3.0 --binary --autolibs=enabled"
+RUN echo "rvm install 2.3.0 --binary --autolibs=enabled"
 RUN echo "rvm --default use 2.3.0" >> /etc/profile
 RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.3.0 500 \
                          --slave /usr/bin/ri ri /usr/bin/ri2.3.0 \
