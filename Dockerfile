@@ -38,7 +38,7 @@ RUN echo "rvm install 2.3.0 --binary --autolibs=enabled"
 RUN echo "rvm --default use 2.3.0" >> /etc/profile
 
 #Install ffmpeg
-RUN apt-get install build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
+RUN apt-get install -y build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
 ADD deb/ffmpeg_5:2.0.1-1_amd64.deb /tmp/
 RUN dpkg -i /tmp/ffmpeg_5:2.0.1-1_amd64.deb
 RUN rm -f /tmp/*.deb
