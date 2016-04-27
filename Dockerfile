@@ -36,12 +36,6 @@ RUN curl -sSL https://get.rvm.io | bash -s stable
 RUN echo "source /etc/profile.d/rvm.sh" >> /etc/profile
 RUN echo "rvm install 2.3.0 --binary --autolibs=enabled"
 RUN echo "rvm --default use 2.3.0" >> /etc/profile
-RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.3.0 500 \
-                         --slave /usr/bin/ri ri /usr/bin/ri2.3.0 \
-                         --slave /usr/bin/irb irb /usr/bin/irb2.3.0 \
-                         --slave /usr/bin/erb erb /usr/bin/erb2.3.0 \
-                         --slave /usr/bin/rdoc rdoc /usr/bin/rdoc2.3.0
-RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.3.0 500
 
 #Install ffmpeg
 RUN apt-get install build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
